@@ -1,0 +1,11 @@
+export { default as map } from "./map.png";
+export { default as logoWhite } from "./logoWhite.svg";
+export { default as logoColored } from "./logoColored.svg";
+export { default as homeHeroImg } from "./homeHeroImg.png";
+export { default as contactSectionImg } from "./contactSectionImg.png";
+export { default as signature } from "./signature.png";
+export { default as aboutSectionImg } from "./aboutSectionImg.png";
+export { default as serviceSectionImg } from "./serviceSectionImg.png";
+export { default as floor } from "./floor.svg";
+export { default as whyChooseUsImg1 } from "./whyChooseUsImg1.png";
+export { default as whyChooseUsImg2 } from "./whyChooseUsImg2.png";

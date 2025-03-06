@@ -1,26 +1,113 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+    --color-dark: #1b1b1b;
+    --color-orange: #fa7d1e;
+    --color-peach: #f9a825;
+    --color-white: #ffffff;
+    --color-white-10: #2d2d2d;
+  }
 }
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-montserrat-sans);
+  --font-alt: var(--font-montserrat-alt);
+
+  /* Screens */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px; /* @media (min-width: 480px) */
+  --breakpoint-md: 768px; /* @media (min-width: 768px) */
+  --breakpoint-lg: 1024px; /* @media (min-width: 1024px) */
+  --breakpoint-xl: 1280px; /* @media (min-width: 1280px) */
+  --breakpoint-2xl: 1536px; /* @media (min-width: 1536px) */
+
+  /* Custom Colors */
+  --color-dark: #100801;
+  --color-orange: #fa7d1e;
+  --color-peach: #fed5b5;
+  --color-white: #ffffff;
+  --color-white-10: #f3ece2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  .container {
+    width: 100%;
+    max-width: 1440px; /* 90rem */
+    margin-inline: auto;
+    padding-inline: 1rem;
   }
 }
 
 body {
+  scroll-behavior: smooth;
+  font-style: normal;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat-sans);
+}
+
+/* Spinner Animation */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: spin 3s ease-in infinite;
+}
+
+/* Scrollbar Styling */
+.scrolling::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0.1rem;
+  border-radius: 0.1rem;
+  background-color: #eee;
+}
+
+::-webkit-scrollbar {
+  width: 0rem;
+  height: 0rem;
+  border-radius: 0.1rem;
+  background-color: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-dark);
+  border-radius: 0.1rem;
+}
+
+/* Date Input Styling */
+input[type="date"] {
+  color: var(--color-dark);
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  color: var(--color-orange) !important;
+  position: absolute;
+  right: 1rem;
+  top: 3.5rem;
+}
+
+/* Swiper Custom Pagination */
+.swiper-pagination-bullet {
+  width: 7.847px !important;
+  height: 7.847px !important;
+  background: var(--color-opacityClr50) !important;
+}
+.swiper-pagination-bullet-active {
+  width: 20px !important;
+  height: 7.847px !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 4.25px !important;
+  border-radius: 42.503px !important;
+  background: var(--color-accent10) !important;
+}
+.swiper-pagination {
+  position: static !important;
 }
