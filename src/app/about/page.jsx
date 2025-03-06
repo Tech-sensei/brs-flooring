@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import ContactSection from "@/components/views/ContactSection";
 import AboutSection from "@/components/views/AboutSection";
+import WhyChooseSection from "@/components/views/WhyChooseSection";
 
 const AboutPage = () => {
   const textVariants = {
@@ -14,7 +15,7 @@ const AboutPage = () => {
     <main className="">
       {/* aboutHero */}
       <section
-        className="h-[413px] text-white-10 flex items-center px-24 pt-[200px] pb-10 bg-no-repeat bg-center bg-cover"
+        className="h-[413px] text-white-10 flex items-center lg:px-24 px-4 pt-[200px] pb-10 bg-no-repeat bg-center bg-cover"
         style={{
           backgroundImage: "url('/assets/images/homeHeroImg.png')",
         }}
@@ -45,6 +46,7 @@ const AboutPage = () => {
       </section>
 
       <AboutSection />
+      <WhyChooseSection />
 
       <ContactSection />
     </main>

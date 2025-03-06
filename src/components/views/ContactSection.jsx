@@ -210,8 +210,13 @@ const ContactSection = () => {
         </form>
 
         {/* image */}
-        <figure className="">
-          <Image src={contactSectionImg} alt="BRS Floors" quality={100} />
+        <figure className="relative overflow-hidden rounded-xs flex flex-col justify-center gap-8 self-stretch bg-[#F8F7F5] transition-all duration-300 ease-in-out flex-1">
+          <Image
+            src={contactSectionImg}
+            alt="BRS Floors"
+            quality={100}
+            className="w-full h-full object-cover rounded-xs transition-transform duration-500 ease-in-out hover:scale-105"
+          />
         </figure>
       </div>
     </section>

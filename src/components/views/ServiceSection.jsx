@@ -68,7 +68,7 @@ const ServiceSection = () => {
         {floorServiceArr.map((service) => (
           <div
             key={service.id}
-            className="flex flex-col its-start gap-6 rounded-xs lg:w-[392px] h-auto lg:h-[295px] bg-[#FAFAFAB8] p-8"
+            className="flex flex-col its-start gap-6 rounded-xs lg:w-[392px] h-auto lg:h-[295px] bg-[#FAFAFAB8] p-8 transition-all duration-500 ease-in-out hover:scale-[1.03] hover:shadow-2xl"
           >
             <Image
               src={floor}
