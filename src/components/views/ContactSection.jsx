@@ -57,7 +57,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14">
+    <section
+      id="contact"
+      className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14"
+    >
       {/* header */}
       <div className="flex flex-col items-start">
         <h2 className="text-dark text-[32px] font-alt font-semibold leading-normal mb-1">

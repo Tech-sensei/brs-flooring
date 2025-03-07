@@ -47,7 +47,7 @@ const WhyChooseArr = [
 
 const WhyChooseSection = () => {
   return (
-    <section className="bg-white py-24 lg:px-24 px-4 flex flex-col lg:flex-row items-start gap-14">
+    <section className="bg-[#FAFAFA] py-24 lg:px-24 px-4 flex flex-col lg:flex-row items-start gap-14">
       {/* image grid */}
       <div className="flex flex-col gap-6 items-start flex-1">
         <div className="grid  lg:grid-cols-2 items-start gap-4">

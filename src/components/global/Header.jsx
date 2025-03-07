@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { logoWhite } from "../../../public/assets/images";
+import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import { FaChevronDown, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { RiMenu2Fill, RiCloseLargeLine } from "react-icons/ri";
+import { logoWhite, logoColored } from "../../../public/assets/images";
 
 const navMenu = [
   { id: 1, name: "Home", url: "/", hasChevron: false },
@@ -15,44 +18,61 @@ const navMenu = [
 ];
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 w-full mx-auto z-50">
-      {/* top banner */}
-      <div className="bg-[#FAFAFA] py-4 px-24 flex justify-end items-center shadow-md">
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+      }`}
+    >
+      {/* Top Contact Bar */}
+      <div className="hidden lg:flex bg-[#FAFAFA] py-4 px-24 justify-end items-center">
         <div className="flex items-center gap-6">
-          {/* phone */}
           <div className="flex items-center gap-4">
             <FaPhoneAlt className="text-orange" />
-            <p className="text-dark text-base text-center font-sans font-medium leading-normal underline">
+            <p className="text-dark text-base font-medium underline">
               (678) 716 7414
             </p>
           </div>
-          {/* email */}
           <div className="flex items-center gap-4">
             <FaEnvelope className="text-orange" />
-            <p className="text-dark text-base text-center font-sans font-medium leading-normal">
+            <p className="text-dark text-base font-medium">
               info@brsflooringandrepairs.com
             </p>
           </div>
         </div>
       </div>
-      
-      {/* navigation menu  */}
-      <nav className=" bg-transparent py-5 px-24 flex justify-between items-center w-full">
-        {/* logo */}
+
+      {/* Navigation Bar */}
+      <nav
+        className={`py-5 px-6 lg:px-24 flex justify-between items-center w-full transition-all duration-500 ${
+          isScrolled ? "text-dark shadow-md" : "text-white"
+        }`}
+      >
+        {/* Logo */}
         <Link href="/">
           <Image
-            src={logoWhite}
+            src={isScrolled ? logoColored : logoWhite}
             alt="BRS Floors"
-            width={200}
-            quality={100}
+            width={160}
             height={40}
           />
         </Link>
 
-        {/* nav menu */}
-        <div className="flex items-center gap-4">
-          {/* navList */}
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center gap-8">
           <ul className="flex items-center gap-4">
             {navMenu.map((item) => (
               <li
@@ -61,25 +81,95 @@ const Header = () => {
               >
                 <Link
                   href={item.url}
-                  className="flex items-center justify-center gap-3 text-white text-base text-center font-sans font-medium leading-normal transition-all duration-500 ease-in-out hover:text-orange"
+                  className={`flex items-center justify-center gap-3 text-base font-sans font-medium leading-normal transition-all duration-500 ease-in-out ${
+                    pathname === item.url
+                      ? "text-orange font-bold"
+                      : isScrolled
+                      ? "text-dark hover:text-orange"
+                      : "text-white hover:text-orange"
+                  }`}
                 >
-                  {item.name}
-                  {item.hasChevron && <FaChevronDown className="text-orange" />}
+                  {item.name}{" "}
+                  {item.hasChevron && (
+                    <FaChevronDown className=" text-orange" />
+                  )}
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* navBtn */}
-          <button
-            type="button"
-            onClick={() => {}}
-            className="flex items-center justify-center gap-2 py-4 px-6 bg-transparent rounded-xs border border-white transition-all duration-500 ease-in-out hover:border-transparent hover:bg-orange text-white-10 text-base text-center font-sans font-medium leading-normal cursor-pointer"
+          {/* Desktop CTA Button */}
+          <Link
+            href="/contact-us"
+            className={`py-3 px-6 border rounded transition-all duration-500 ${
+              isScrolled
+                ? "border-dark text-dark hover:bg-orange hover:text-white"
+                : "border-white text-white hover:bg-orange"
+            }`}
           >
             Get A Free Quote
-          </button>
+          </Link>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden text-white text-2xl"
+        >
+          {isMenuOpen ? (
+            <RiCloseLargeLine
+              className={`${isScrolled ? "text-dark" : "text-white"}`}
+            />
+          ) : (
+            <RiMenu2Fill
+              className={`${isScrolled ? "text-dark" : "text-white"}`}
+            />
+          )}
+        </button>
       </nav>
+
+      {/* Mobile Menu (Slide Down) */}
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={
+          isMenuOpen
+            ? { height: "auto", opacity: 1 }
+            : { height: 0, opacity: 0 }
+        }
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        className={`lg:hidden bg-white text-dark shadow-md overflow-hidden ${
+          isMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        <ul className="flex flex-col items-start gap-2 py-6">
+          {navMenu.map((item) => (
+            <li key={item.id}>
+              <Link
+                href={item.url}
+                onClick={() => setIsMenuOpen(false)}
+                className={`text-base font-medium block px-4 py-2 transition-all duration-300 ${
+                  pathname === item.url
+                    ? "text-orange font-bold"
+                    : "hover:text-orange"
+                }`}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Mobile CTA Button */}
+        <div className="flex justify-center w-full pb-6 px-4">
+          <Link
+            href="/contact-us"
+            onClick={() => setIsMenuOpen(false)}
+            className=" w-full py-4 px-6 border border-transparent bg-orange text-white-10 text-center font-sans font-semibold rounded-xs transition-all duration-500 ease-in-out hover:bg-orange hover:text-white"
+          >
+            Get A Free Quote
+          </Link>
+        </div>
+      </motion.div>
     </header>
   );
 };

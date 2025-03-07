@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const HomeHero = () => {
   const textVariants = {
@@ -43,17 +44,19 @@ const HomeHero = () => {
         </div>
 
         {/* button */}
-        <motion.button
-          type="button"
-          onClick={() => {}}
-          variants={textVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
-          className="flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-white hover:bg-transparent text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer"
-        >
-          Get An Estimate
-        </motion.button>
+        <Link href="#contact">
+          <motion.button
+            type="button"
+            onClick={() => {}}
+            variants={textVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: 1, ease: "easeOut" }}
+            className="flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-white hover:bg-transparent text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer"
+          >
+            Get An Estimate
+          </motion.button>
+        </Link>
       </div>
     </section>
   );
