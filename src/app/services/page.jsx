@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaRegCheckCircle } from "react-icons/fa";
 import ServiceSection from "@/components/views/ServiceSection";
@@ -32,7 +33,19 @@ const ServicePage = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-white-10 text-base font-sans font-normal leading-normal"
             >
-              Home - Service
+              <Link
+                href="/"
+                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
+              >
+                Home
+              </Link>{" "}
+              -
+              <Link
+                href="/services"
+                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
+              >
+                Services
+              </Link>{" "}
             </motion.p>
 
             <motion.h1

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import {
@@ -113,7 +114,19 @@ const ContactUs = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-white-10 text-base font-sans font-normal leading-normal"
             >
-              Home - Contact Us
+              <Link
+                href="/"
+                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
+              >
+                Home
+              </Link>{" "}
+              -
+              <Link
+                href="/contact-us"
+                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
+              >
+                Contact US
+              </Link>{" "}
             </motion.p>
 
             <motion.h1

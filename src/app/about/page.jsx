@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import ContactSection from "@/components/views/ContactSection";
 import AboutSection from "@/components/views/AboutSection";
@@ -18,7 +19,6 @@ const AboutPage = () => {
         className="h-[413px] text-white-10 flex items-center lg:px-24 px-4 pt-[200px] pb-10 bg-no-repeat bg-center bg-cover"
         style={{
           backgroundImage: "url('/assets/images/homeHeroImg.png')",
-        
         }}
       >
         <div className="flex flex-col items-start gap-4 w-[608px]">
@@ -28,9 +28,21 @@ const AboutPage = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-white text-base font-sans font-normal leading-normal"
+              className="text-white-10 text-base font-sans font-normal leading-normal"
             >
-              Home - About Us
+              <Link
+                href="/"
+                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
+              >
+                Home
+              </Link>{" "}
+              -
+              <Link
+                href="/about"
+                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
+              >
+                About
+              </Link>{" "}
             </motion.p>
 
             <motion.h1

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   projectSecImg1,
   projectSecImg2,
@@ -8,7 +9,7 @@ import {
   projectSecImg5,
 } from "../../../public/assets/images";
 
-const projects = [
+export const projectsArr = [
   {
     id: 1,
     title: "SALLY’S WORKSPACE",
@@ -79,55 +80,56 @@ const ProjectSection = () => {
       {/* project grid list */}
       <div className="flex flex-col gap-8 items-start w-full">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 w-full">
-          {projects.slice(0, 2).map((project, idx) => (
-            <figure
-              key={idx}
-              className="relative w-full h-[400px] lg:h-[500px] overflow-hidden group"
-            >
-              <Image
-                src={project.image}
-                alt={project.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-101"
-              />
-              <div
-                className={`absolute bottom-0 left-0 w-full p-6 rounded-b-lg transition-transform duration-300 ease-in-out translate-y-0 group-hover:-translate-y-2 ${project.overlayBg}`}
-              >
-                <h2 className="text-white text-xl font-alt font-semibold leading-normal uppercase">
-                  {project.title}
-                </h2>
-                <p className="text-white text-base font-sans font-normal leading-normal">
-                  {project.description}
-                </p>
-              </div>
-            </figure>
+          {projectsArr.slice(0, 2).map((project) => (
+            <Link key={project.id} href={`/projects/${project.id}`} passHref>
+              <figure className="relative w-full h-[400px] lg:h-[500px] overflow-hidden group">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-101"
+                />
+                <div
+                  className={`absolute bottom-0 left-0 w-full p-6 rounded-b-lg transition-transform duration-300 ease-in-out translate-y-0 group-hover:-translate-y-2 ${project.overlayBg}`}
+                >
+                  <h2 className="text-white text-xl font-alt font-semibold leading-normal uppercase">
+                    {project.title}
+                  </h2>
+                  <p className="text-white text-base font-sans font-normal leading-normal">
+                    {project.description}
+                  </p>
+                </div>
+              </figure>
+            </Link>
           ))}
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
-          {projects.slice(2, 5).map((project, idx) => (
-            <figure
-              key={idx}
-              className="relative w-full h-[400px] lg:h-[500px] overflow-hidden group"
-            >
-              <Image
-                src={project.image}
-                alt={project.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-101"
-              />
-              <div
-                className={`absolute bottom-0 left-0 w-full p-6 rounded-b-lg transition-transform duration-300 ease-in-out translate-y-0 group-hover:-translate-y-2 ${project.overlayBg}`}
+          {projectsArr.slice(2, 5).map((project, idx) => (
+            <Link key={project.id} href={`/projects/${project.id}`} passHref>
+              <figure
+                key={idx}
+                className="relative w-full h-[400px] lg:h-[500px] overflow-hidden group"
               >
-                <h2 className="text-white text-xl font-alt font-semibold leading-normal uppercase">
-                  {project.title}
-                </h2>
-                <p className="text-white text-base font-sans font-normal leading-normal">
-                  {project.description}
-                </p>
-              </div>
-            </figure>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg transition-transform duration-300 ease-in-out group-hover:scale-101"
+                />
+                <div
+                  className={`absolute bottom-0 left-0 w-full p-6 rounded-b-lg transition-transform duration-300 ease-in-out translate-y-0 group-hover:-translate-y-2 ${project.overlayBg}`}
+                >
+                  <h2 className="text-white text-xl font-alt font-semibold leading-normal uppercase">
+                    {project.title}
+                  </h2>
+                  <p className="text-white text-base font-sans font-normal leading-normal">
+                    {project.description}
+                  </p>
+                </div>
+              </figure>
+            </Link>
           ))}
         </div>
       </div>
