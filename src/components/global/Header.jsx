@@ -16,7 +16,7 @@ const navMenu = [
 
 const Header = () => {
   return (
-    <header className="fixed top-0 w-full mx-auto">
+    <header className="fixed top-0 w-full mx-auto z-50">
       {/* top banner */}
       <div className="bg-[#FAFAFA] py-4 px-24 flex justify-end items-center shadow-md">
         <div className="flex items-center gap-6">

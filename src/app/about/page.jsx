@@ -18,6 +18,7 @@ const AboutPage = () => {
         className="h-[413px] text-white-10 flex items-center lg:px-24 px-4 pt-[200px] pb-10 bg-no-repeat bg-center bg-cover"
         style={{
           backgroundImage: "url('/assets/images/homeHeroImg.png')",
+        
         }}
       >
         <div className="flex flex-col items-start gap-4 w-[608px]">

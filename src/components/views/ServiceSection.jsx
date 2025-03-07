@@ -1,35 +1,60 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { floor } from "../../../public/assets/images";
+import {
+  floor1,
+  floor2,
+  floor3,
+  floor4,
+  floor5,
+  floor6,
+} from "../../../public/assets/images";
 
 const floorServiceArr = [
   {
     id: 1,
-    title: "Hardwood Flooring",
+    image: floor1,
+    title: "Flooring Installation",
     description:
-      "We offer a wide range of hardwood flooring services including installation, repair, and refinishing. Our team of experts can help you choose the best hardwood flooring for your home or business.",
+      "BRS Floors specializes in expert flooring installation, including wood, laminate, LVP, and tile...",
   },
 
   {
     id: 2,
-    title: "Laminate Flooring",
+    image: floor2,
+    title: "Vinyl Flooring Services",
     description:
-      "Laminate flooring is a cost-effective alternative to hardwood flooring. We offer laminate flooring installation and repair services to help you achieve the look you want for your space.",
+      "BRS Floors offers expert vinyl flooring installation, including luxury vinyl plank (LVP) and vinyl tile...",
   },
 
   {
     id: 3,
-    title: "Vinyl Flooring Service",
+    image: floor3,
+    title: "Flooring Refinishing",
     description:
-      "Vinyl flooring is a durable and affordable option for any room in your home. We offer vinyl flooring installation and repair services to help you create a beautiful and functional space.",
+      "BRS Floors specializes in flooring refinishing, restoring the beauty of hardwood and other surfaces",
   },
 
   {
     id: 4,
+    image: floor4,
     title: "Tile Flooring Installation",
     description:
-      "Tile flooring is a versatile option for any room in your home. We offer tile flooring installation and repair services to help you create a beautiful and durable space.",
+      "BRS Floors offers professional tile flooring installation, including porcelain and ceramic tiles.",
+  },
+  {
+    id: 5,
+    image: floor5,
+    title: "Carpet Installation",
+    description:
+      "BRS Floors provides expert carpet installation, delivering comfort, style, and durability.",
+  },
+  {
+    id: 6,
+    image: floor6,
+    title: "Painting Services",
+    description:
+      "BRS Floors offers professional painting services, delivering smooth, high-quality finishes for interiors and exteriors.",
   },
 ];
 
@@ -50,9 +75,8 @@ const ServiceSection = () => {
           Solutions for <br /> every corner
         </h2>
         <p className="text-white text-base font-sans font-normal leading-normal">
-          We offer a wide range of flooring services to meet your needs. From
-          hardwood to tile, we have the expertise to help you create the perfect
-          space for your home or business.
+          High-Quality Flooring & Painting Services for a Durable and Stylish
+          Home.
         </p>
 
         <Link
@@ -64,16 +88,16 @@ const ServiceSection = () => {
       </div>
 
       {/* floor lists */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 items-start gap-3">
         {floorServiceArr.map((service) => (
           <div
             key={service.id}
-            className="flex flex-col its-start gap-6 rounded-xs lg:w-[392px] h-auto lg:h-[295px] bg-[#FAFAFAB8] p-8 transition-all duration-500 ease-in-out hover:scale-[1.03] hover:shadow-2xl"
+            className="flex flex-col its-start gap-4 rounded-xs lg:w-[250px] h-auto lg:h-[330px] bg-[#FAFAFAB8] p-8 transition-all duration-500 ease-in-out hover:scale-[1.03] hover:shadow-2xl"
           >
             <Image
-              src={floor}
+              src={service.image}
               alt="floor"
-              width={86}
+              width={70}
               height={37}
               quality={100}
               className="object-cover rounded-xs"

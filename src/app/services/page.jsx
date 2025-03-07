@@ -2,8 +2,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { FaRegCheckCircle } from "react-icons/fa";
 import ServiceSection from "@/components/views/ServiceSection";
 import ContactSection from "@/components/views/ContactSection";
+import HowItWork from "@/components/views/HowItWork";
+import VideoPlayer from "@/components/ui/VideoPlayer";
+import TestimonialSection from "@/components/views/TestimonialSection";
 
 const ServicePage = () => {
   const textVariants = {
@@ -44,7 +48,68 @@ const ServicePage = () => {
         </div>
       </section>
 
+      <section className="bg-white py-16 lg:px-24 px-4 flex flex-col lg:flex-row items-start gap-6">
+        {/* contents */}
+        <div className="flex flex-col items-start gap-4 w-full flex-1">
+          <div className="w-[40%] lg:w-[20%] h-[2px] bg-dark mb-2"></div>
+          <h2 className="text-[32px] text-dark font-alt font-semibold leading-9 mb-4">
+            Interior design makes the place spacious
+          </h2>
+          <p className="text-dark text-base font-sans font-normal leading-normal">
+            Nullam eu malesuada risus praesent fermentum. Augue magnis proin
+            primis tempor litora ullamcorper turpis ad netus. Fusce dolor mus
+            justo nascetur donec pulvinar congue.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center justify-between w-full">
+            <div className="flex items-center gap-3">
+              <FaRegCheckCircle className="text-dark" />
+              <p className="text-dark text-base font-sans font-normal leading-normal">
+                Faucibus mattis aptent ac
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <FaRegCheckCircle className="text-dark" />
+              <p className="text-dark text-base font-sans font-normal leading-normal">
+                Faucibus mattis aptent ac
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <FaRegCheckCircle className="text-dark" />
+              <p className="text-dark text-base font-sans font-normal leading-normal">
+                Faucibus mattis aptent ac
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <FaRegCheckCircle className="text-dark" />
+              <p className="text-dark text-base font-sans font-normal leading-normal">
+                Faucibus mattis aptent ac
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <FaRegCheckCircle className="text-dark" />
+              <p className="text-dark text-base font-sans font-normal leading-normal">
+                Faucibus mattis aptent ac
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <FaRegCheckCircle className="text-dark" />
+              <p className="text-dark text-base font-sans font-normal leading-normal">
+                Faucibus mattis aptent ac
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* video */}
+        <div className="flex-1 w-full">
+          <VideoPlayer />
+        </div>
+      </section>
+
       <ServiceSection />
+      <HowItWork />
+      <TestimonialSection />
       <ContactSection />
     </main>
   );

@@ -20,12 +20,12 @@ const AboutSection = () => {
       {/* signature */}
       <div className="flex flex-col items-start gap-4">
         <p className="text-dark text-base font-sans font-normal leading-normal">
-          Our mission is to provide the best flooring services in the Atlanta
-          metropolitan area. We are committed to delivering exceptional quality
-          and customer service to every client. We take pride in our work and
-          strive to exceed your expectations. Contact us today to learn more
-          about our services and how we can help you create the perfect space
-          for your home or business. We look forward to working with you!
+          BRS Floors specializes in premium flooring installation and
+          refinishing, including solid wood, engineered wood, laminate, luxury
+          vinyl plank (LVP), and porcelain tile. With over two decades of
+          experience, we take pride in delivering top-tier craftsmanship with
+          honest pricing. Our name reflects our Brazilian heritage, passion, and
+          commitment to quality.
         </p>
 
         <Image
@@ -36,8 +36,8 @@ const AboutSection = () => {
           quality={100}
         />
 
-        <h2 className="text-dark text-base font-sans font-bold leading-normal">
-          ALLEN D. LOPEZ, CEO
+        <h2 className="text-dark text-base font-sans font-bold leading-normal uppercase">
+          Helio Da silva
         </h2>
       </div>
 
