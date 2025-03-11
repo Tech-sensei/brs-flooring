@@ -21,12 +21,7 @@ const Footer = () => {
   return (
     <>
       <figure className="">
-        <Image
-          src={map}
-          alt="BRS Floors"
-          quality={100}
-          className="w-full h-full"
-        />
+        <Image src={map} alt="BRS Floors" quality={100} className="w-full h-full" />
       </figure>
 
       <footer className="flex items-center gap-14 py-14 lg:px-24 px-4 bg-[#FAFAFA]">
@@ -36,13 +31,7 @@ const Footer = () => {
             {/* logo */}
             <div className="flex flex-col items-start gap-2">
               <Link href="/">
-                <Image
-                  src={logoColored}
-                  alt="BRS Floors"
-                  width={200}
-                  quality={100}
-                  height={40}
-                />
+                <Image src={logoColored} alt="BRS Floors" width={200} quality={100} height={40} />
               </Link>
 
               <p className="text-dark text-base font-sans font-normal leading-normal">
@@ -74,41 +63,26 @@ const Footer = () => {
             {/* email */}
             <div className="flex items-center gap-3">
               <FaRegEnvelope className="text-dark" />
-              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">
-                info@brsflooring&repairs.com
-              </p>
+              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">brsfloors@gmail.com</p>
             </div>
 
             {/* phone */}
             <div className="flex items-center gap-3">
               <PiWhatsappLogo className="text-dark" />
-              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">
-                +1 344 7665 887
-              </p>
+              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">+404-552-2642</p>
             </div>
 
             {/* date */}
             <div className="flex items-center gap-3">
               <AiTwotoneClockCircle className="text-[#4033181A]" />
-              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">
-                Mon-Fri 10:00 am – 5:00 pm
-              </p>
-            </div>
-
-            {/* address */}
-            <div className="flex items-center gap-3">
-              <SlLocationPin className="text-dark" />
-              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">
-                455, Street Name, City, State Country Code.
-              </p>
+              <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">Mon-Fri 10:00 am – 5:00 pm</p>
             </div>
           </div>
 
           {/* copyright and socials */}
           <div className="flex flex-col lg:flex-row items-center justify-between  gap-4 w-full">
             <small className="text-dark text-base text-center font-sans font-normal leading-[150%] tracking-[-0.16px] italic">
-              © {new Date().getFullYear()} by BRS Flooring LLC. All rights
-              reserved.
+              © {new Date().getFullYear()} by BRS Flooring LLC. All rights reserved.
             </small>
 
             <div className="flex items-center gap-6">

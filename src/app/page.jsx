@@ -19,7 +19,7 @@ const Homepage = () => {
       <HowItWork />
       <TestimonialSection />
       <ProjectSection />
-      <JourneySection />
+      {/* <JourneySection /> */}
       <ContactSection />
     </main>
   );
