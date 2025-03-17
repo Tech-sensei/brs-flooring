@@ -95,8 +95,8 @@ const AboutPage = () => {
       <AboutSection />
       <WhyChooseSection />
 
-      <section className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14">
-        {/* header */}
+      {/* <section className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14">
+      
         <div className="flex flex-col lg:flex-row items-start justify-between w-full">
           <div className="flex flex-col items-start lg:gap-4 flex-1">
             <p className="text-dark text-base font-sans font-normal uppercase leading-normal">
@@ -118,7 +118,7 @@ const AboutPage = () => {
           </div>
         </div>
 
-        {/* project grid list */}
+      
         <div className="flex flex-col gap-8 items-start w-full">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
             {projectsArr.map((project, idx) => (
@@ -149,7 +149,7 @@ const AboutPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <ContactSection />
     </main>

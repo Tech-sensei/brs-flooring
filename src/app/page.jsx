@@ -18,7 +18,7 @@ const Homepage = () => {
       <WhyChooseSection />
       <HowItWork />
       <TestimonialSection />
-      <ProjectSection />
+      {/* <ProjectSection /> */}
       {/* <JourneySection /> */}
       <ContactSection />
     </main>

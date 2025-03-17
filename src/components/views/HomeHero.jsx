@@ -36,10 +36,8 @@ const HomeHero = () => {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="text-white-10 text-[15px] lg:text-base font-sans font-medium leading-normal"
           >
-            BRS Floors specializes in high-quality, durable, and stylish
-            flooring solutions across the world. From hardwood to luxury vinyl,
-            we offer expert installation and premium materials to transform your
-            space.
+            BRS Floors specializes in high-quality, durable, and stylish flooring solutions across Georgia. From hardwood to luxury vinyl,
+            we offer expert installation and premium materials to transform your space.
           </motion.p>
         </div>
 

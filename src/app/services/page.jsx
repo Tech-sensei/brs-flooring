@@ -61,8 +61,8 @@ const ServicePage = () => {
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:px-24 px-4 flex flex-col lg:flex-row items-start gap-6">
-        {/* contents */}
+      {/* <section className="bg-white py-16 lg:px-24 px-4 flex flex-col lg:flex-row items-start gap-6">
+     
         <div className="flex flex-col items-start gap-4 w-full flex-1">
           <div className="w-[40%] lg:w-[20%] h-[2px] bg-dark mb-2"></div>
           <h2 className="text-[32px] text-dark font-alt font-semibold leading-9 mb-4">
@@ -114,11 +114,11 @@ const ServicePage = () => {
           </div>
         </div>
 
-        {/* video */}
+    
         <div className="flex-1 w-full">
           <VideoPlayer />
         </div>
-      </section>
+      </section> */}
 
       <ServiceSection />
       <HowItWork />

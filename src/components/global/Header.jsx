@@ -43,13 +43,13 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <FaPhoneAlt className="text-orange" />
             <p className="text-dark text-base font-medium underline">
-              (678) 716 7414
+              (404) 552 2642
             </p>
           </div>
           <div className="flex items-center gap-4">
             <FaEnvelope className="text-orange" />
             <p className="text-dark text-base font-medium">
-              info@brsflooringandrepairs.com
+              brsfloors@gmail.com
             </p>
           </div>
         </div>

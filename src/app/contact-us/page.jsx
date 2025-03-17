@@ -97,6 +97,7 @@ const ContactUs = () => {
       alert("Form submitted successfully!");
     }
   };
+  
   return (
     <main className="">
       <section

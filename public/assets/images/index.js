@@ -5,6 +5,7 @@ export { default as homeHeroImg } from "./homeHeroImg.png";
 export { default as contactSectionImg } from "./contactSectionImg.png";
 export { default as signature } from "./signature.png";
 export { default as aboutSectionImg } from "./aboutSectionImg.png";
+export { default as aboutSectionImg1 } from "./aboutSectionImg1.jpg";
 export { default as serviceSectionImg } from "./serviceSectionImg.png";
 export { default as floor1 } from "./floor1.svg";
 export { default as floor2 } from "./floor2.svg";
