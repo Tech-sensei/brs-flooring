@@ -2,8 +2,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { contactSectionImg } from "../../../public/assets/images";
+import emailjs from "@emailjs/browser";
+import { GrSend } from "react-icons/gr";
+import { toast } from "react-toastify";
 
 const ContactSection = () => {
+   const form = useRef();
+     const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -41,31 +46,31 @@ const ContactSection = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      setErrors({});
-      console.log("Form Data:", formData);
-      // Reset form after submission
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
-      alert("Form submitted successfully!");
+    if (!validateForm()) return; // Stop if validation fails
+
+    setLoading(true); // Start loading
+    try {
+      const result = await emailjs.sendForm("service_eehh4hl", "template_ya9njxe", form.current, "2gw7Lwmm3mD6Te1u7");
+
+      console.log(result.text);
+      toast.success("Message sent successfully! 🎉");
+      // setFormData({ firstName: "", lastName: "", email: "", phoneNumber: "", message: "" }); // Reset form
+    } catch (error) {
+      console.log(error.text);
+      toast.error("Failed to send message. Try again.");
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   return (
-    <section
-      id="contact"
-      className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14"
-    >
+    <section id="contact" className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14">
       {/* header */}
       <div className="flex flex-col items-start">
-        <h2 className="text-dark text-[32px] font-alt font-semibold leading-normal mb-1">
-          Reach Out To Us
-        </h2>
+        <h2 className="text-dark text-[32px] font-alt font-semibold leading-normal mb-1">Don't hesitate to contact us</h2>
         <div className="w-[60%] lg:w-[40%] h-[2px] bg-dark mb-4"></div>
         <p className="text-dark text-base font-sans font-normal leading-normal">
           Fill Out The Form Below To Get a Free No Obligation Flooring Quote!
@@ -75,19 +80,12 @@ const ContactSection = () => {
       {/* form and image */}
       <div className="flex flex-col lg:flex-row items-center gap-14 w-full">
         {/* form */}
-        <form
-          onSubmit={handleSubmit}
-          autoComplete="off"
-          className="flex flex-col items-start gap-8 flex-1 w-full"
-        >
+        <form ref={form} onSubmit={handleSubmit} autoComplete="off" className="flex flex-col items-start gap-8 flex-1 w-full">
           {/* first and last name */}
           <div className="flex flex-col md:flex-row gap-6 items-start w-full">
             {/* First Name */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label
-                htmlFor="firstName"
-                className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-              >
+              <label htmlFor="firstName" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
                 First Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -101,17 +99,12 @@ const ContactSection = () => {
                   errors.firstName ? "border-red-500" : "border-[#1B1304]"
                 }`}
               />
-              {errors.firstName && (
-                <p className="text-red-500 text-sm">{errors.firstName}</p>
-              )}
+              {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
             </div>
 
             {/* Last Name */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label
-                htmlFor="lastName"
-                className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-              >
+              <label htmlFor="lastName" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
                 Last Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -125,18 +118,13 @@ const ContactSection = () => {
                   errors.lastName ? "border-red-500" : "border-[#1B1304]"
                 }`}
               />
-              {errors.lastName && (
-                <p className="text-red-500 text-sm">{errors.lastName}</p>
-              )}
+              {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
             </div>
           </div>
 
           {/* email */}
           <div className="flex flex-col gap-2 items-start w-full">
-            <label
-              htmlFor="email"
-              className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-            >
+            <label htmlFor="email" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
               Email address <span className="text-red-500">*</span>
             </label>
             <input
@@ -150,17 +138,12 @@ const ContactSection = () => {
                 errors.email ? "border-red-500" : "border-[#1B1304]"
               }`}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
 
           {/*phone number  */}
           <div className="flex flex-col gap-2 items-start w-full">
-            <label
-              htmlFor="phoneNumber"
-              className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-            >
+            <label htmlFor="phoneNumber" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
               Phone <span className="text-red-500">*</span>
             </label>
             <input
@@ -174,17 +157,12 @@ const ContactSection = () => {
                 errors.phoneNumber ? "border-red-500" : "border-[#1B1304]"
               }`}
             />
-            {errors.phoneNumber && (
-              <p className="text-red-500 text-sm">{errors.phoneNumber}</p>
-            )}
+            {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber}</p>}
           </div>
 
           {/* message */}
           <div className="flex flex-col gap-2 items-start w-full">
-            <label
-              htmlFor="message"
-              className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-            >
+            <label htmlFor="message" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
               Tell Us About Your Project <span className="text-red-500">*</span>
             </label>
 
@@ -198,9 +176,7 @@ const ContactSection = () => {
                 errors.message ? "border-red-500" : "border-[#1B1304]"
               }`}
             />
-            {errors.message && (
-              <p className="text-red-500 text-sm">{errors.message}</p>
-            )}
+            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
           </div>
 
           {/* submit btn */}
