@@ -10,32 +10,32 @@ import { toast } from "react-toastify";
 import { bulbIcon, fileIcon, clockIcon, penIcon } from "../../../public/assets/icons";
 
 const WhyChooseArr = [
-  {
-    id: 1,
-    icon: clockIcon,
-    title: "Our Location",
-    description: "No. 123, Street Name, Atlanta, USA",
-  },
+  // {
+  //   id: 1,
+  //   icon: clockIcon,
+  //   title: "Our Location",
+  //   description: "No. 123, Street Name, Atlanta, USA",
+  // },
 
   {
     id: 2,
     icon: fileIcon,
     title: "Phone Number",
-    description: "+6221.2002.2012 +6221.2002.2013",
+    description: "+(404) 552 2642",
   },
 
-  {
-    id: 3,
-    icon: bulbIcon,
-    title: "Office Hours",
-    description: "Mon-Sat : 8am-6pm Sunday : Closed",
-  },
+  // {
+  //   id: 3,
+  //   icon: bulbIcon,
+  //   title: "Office Hours",
+  //   description: "Mon-Sat : 8am-6pm Sunday : Closed",
+  // },
 
   {
     id: 4,
     icon: penIcon,
     title: "Email Address",
-    description: "support@yourmail.tld hello@yourmail.tld",
+    description: "brsfloors@gmail.com",
   },
 ];
 
