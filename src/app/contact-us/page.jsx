@@ -1,15 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+import { GrSend } from "react-icons/gr";
+import { toast } from "react-toastify";
 
-import {
-  bulbIcon,
-  fileIcon,
-  clockIcon,
-  penIcon,
-} from "../../../public/assets/icons";
+import { bulbIcon, fileIcon, clockIcon, penIcon } from "../../../public/assets/icons";
 
 const WhyChooseArr = [
   {
@@ -42,6 +40,8 @@ const WhyChooseArr = [
 ];
 
 const ContactUs = () => {
+  const form = useRef();
+  const [loading, setLoading] = useState(false);
   const textVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
@@ -56,13 +56,18 @@ const ContactUs = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    // Clear the error when user starts typing
+    setErrors({ ...errors, [name]: "" });
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    let newErrors = {};
+
     if (!formData.firstName.trim()) {
       newErrors.firstName = "First name is required.";
     }
@@ -71,9 +76,7 @@ const ContactUs = () => {
     }
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
-    } else if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)
-    ) {
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
       newErrors.email = "Enter a valid email address.";
     }
     if (!formData.message.trim()) {
@@ -83,21 +86,27 @@ const ContactUs = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      setErrors({});
-      console.log("Form Data:", formData);
-      // Reset form after submission
-      setFormData({ firstName: "", lastName: "", email: "", message: "" });
-      alert("Form submitted successfully!");
+    if (!validateForm()) return; // Stop if validation fails
+
+    setLoading(true); // Start loading
+    try {
+      const result = await emailjs.sendForm("service_eehh4hl", "template_ya9njxe", form.current, "2gw7Lwmm3mD6Te1u7");
+
+      console.log(result.text);
+      toast.success("Message sent successfully! 🎉");
+      // setFormData({ firstName: "", lastName: "", email: "", phoneNumber: "", message: "" }); // Reset form
+    } catch (error) {
+      console.log(error.text);
+      toast.error("Failed to send message. Try again.");
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
-  
+
   return (
     <main className="">
       <section
@@ -115,17 +124,11 @@ const ContactUs = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-white-10 text-base font-sans font-normal leading-normal"
             >
-              <Link
-                href="/"
-                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
-              >
+              <Link href="/" className="text-white-10 text-base font-sans font-normal leading-normal hover:underline">
                 Home
               </Link>{" "}
               -
-              <Link
-                href="/contact-us"
-                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
-              >
+              <Link href="/contact-us" className="text-white-10 text-base font-sans font-normal leading-normal hover:underline">
                 Contact US
               </Link>{" "}
             </motion.p>
@@ -148,13 +151,10 @@ const ContactUs = () => {
         <div className="flex flex-col flex-1">
           <div className="w-[40%] h-[2px] bg-dark mb-2"></div>
 
-          <h2 className="text-dark text-[32px] font-alt font-semibold leading-normal mb-4">
-            Don't hesitate to contact us
-          </h2>
+          <h2 className="text-dark text-[32px] font-alt font-semibold leading-normal mb-4">Don't hesitate to contact us</h2>
 
           <p className="text-dark text-base font-sans font-normal leading-normal mb-6">
-            You can reach out to us for any inquiries or to get a free no
-            obligation flooring quote.
+            You can reach out to us for any inquiries or to get a free no obligation flooring quote.
           </p>
 
           <div className="grid lg:grid-cols-2 gap-x-6 items-center">
@@ -162,28 +162,15 @@ const ContactUs = () => {
               <div
                 key={reason.id}
                 className={`flex items-start gap-4 lg:border-r-2 border-dashed  px-4 ${
-                  index < 2
-                    ? "border-b-2 py-4 lg:pb-4"
-                    : "border-b-2 lg:border-b-transparent py-4"
-                } ${index === 1 ? "border-r-transparent lg:border-l-2" : ""}${
-                  index === 3 ? "border-r-transparent lg:border-l-2" : ""
-                }`}
+                  index < 2 ? "border-b-2 py-4 lg:pb-4" : "border-b-2 lg:border-b-transparent py-4"
+                } ${index === 1 ? "border-r-transparent lg:border-l-2" : ""}${index === 3 ? "border-r-transparent lg:border-l-2" : ""}`}
               >
-                <Image
-                  src={reason.icon}
-                  alt="icon"
-                  quality={100}
-                  className="object-cover rounded-xs"
-                />
+                <Image src={reason.icon} alt="icon" quality={100} className="object-cover rounded-xs" />
 
                 <div className="flex flex-col gap-2 w-full lg:h-auto">
-                  <h2 className="text-dark text-xl font-semibold font-sans leading-normal">
-                    {reason.title}
-                  </h2>
+                  <h2 className="text-dark text-xl font-semibold font-sans leading-normal">{reason.title}</h2>
 
-                  <p className="text-dark text-base font-sans font-normal leading-normal">
-                    {reason.description}
-                  </p>
+                  <p className="text-dark text-base font-sans font-normal leading-normal">{reason.description}</p>
                 </div>
               </div>
             ))}
@@ -191,19 +178,12 @@ const ContactUs = () => {
         </div>
 
         {/* form */}
-        <form
-          onSubmit={handleSubmit}
-          autoComplete="off"
-          className="flex flex-col items-start gap-8 flex-1 w-full"
-        >
+        <form ref={form} onSubmit={handleSubmit} autoComplete="off" className="flex flex-col items-start gap-8 flex-1 w-full">
           {/* first and last name */}
           <div className="flex flex-col md:flex-row gap-6 items-start w-full">
             {/* First Name */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label
-                htmlFor="firstName"
-                className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-              >
+              <label htmlFor="firstName" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
                 First Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -217,17 +197,12 @@ const ContactUs = () => {
                   errors.firstName ? "border-red-500" : "border-[#1B1304]"
                 }`}
               />
-              {errors.firstName && (
-                <p className="text-red-500 text-sm">{errors.firstName}</p>
-              )}
+              {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
             </div>
 
             {/* Last Name */}
             <div className="flex flex-col gap-2 items-start w-full">
-              <label
-                htmlFor="lastName"
-                className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-              >
+              <label htmlFor="lastName" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
                 Last Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -241,18 +216,13 @@ const ContactUs = () => {
                   errors.lastName ? "border-red-500" : "border-[#1B1304]"
                 }`}
               />
-              {errors.lastName && (
-                <p className="text-red-500 text-sm">{errors.lastName}</p>
-              )}
+              {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
             </div>
           </div>
 
           {/* email */}
           <div className="flex flex-col gap-2 items-start w-full">
-            <label
-              htmlFor="email"
-              className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-            >
+            <label htmlFor="email" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
               Email address <span className="text-red-500">*</span>
             </label>
             <input
@@ -266,17 +236,12 @@ const ContactUs = () => {
                 errors.email ? "border-red-500" : "border-[#1B1304]"
               }`}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
           </div>
 
           {/*phone number  */}
           <div className="flex flex-col gap-2 items-start w-full">
-            <label
-              htmlFor="phoneNumber"
-              className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-            >
+            <label htmlFor="phoneNumber" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
               Phone <span className="text-red-500">*</span>
             </label>
             <input
@@ -290,17 +255,12 @@ const ContactUs = () => {
                 errors.phoneNumber ? "border-red-500" : "border-[#1B1304]"
               }`}
             />
-            {errors.phoneNumber && (
-              <p className="text-red-500 text-sm">{errors.phoneNumber}</p>
-            )}
+            {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber}</p>}
           </div>
 
           {/* message */}
           <div className="flex flex-col gap-2 items-start w-full">
-            <label
-              htmlFor="message"
-              className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]"
-            >
+            <label htmlFor="message" className="text-base font-sans font-normal leading-normal tracking-[-0.32px] text-[#1B1304]">
               Tell Us About Your Project <span className="text-red-500">*</span>
             </label>
 
@@ -314,17 +274,21 @@ const ContactUs = () => {
                 errors.message ? "border-red-500" : "border-[#1B1304]"
               }`}
             />
-            {errors.message && (
-              <p className="text-red-500 text-sm">{errors.message}</p>
-            )}
+            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
           </div>
 
           {/* submit btn */}
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer group"
           >
-            Request Quote
+            <span className="">{loading ? "Sending..." : "Request Quote"}</span>
+            <GrSend
+              size={18}
+              className={`text-white transition-transform duration-300 ease-in-out ${
+                loading ? "animate-pulse" : "group-hover:translate-x-1 group-hover:text-orange"
+              }`}
+            />
           </button>
         </form>
       </section>

@@ -3,6 +3,8 @@ import Head from "next/head";
 import localFont from "next/font/local";
 import Header from "@/components/global/Header";
 import Footer from "@/components/global/Footer";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const montserrat = localFont({
   src: [
@@ -52,12 +54,11 @@ export default function RootLayout({ children }) {
         <meta name="twitter:image" content="/images/og-image.jpg" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body
-        className={`${montserrat.variable} ${montserratAlt.variable} antialiased`}
-      >
+      <body className={`${montserrat.variable} ${montserratAlt.variable} antialiased`}>
         <Header />
+        <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} closeOnClick transition={Slide}/>
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
