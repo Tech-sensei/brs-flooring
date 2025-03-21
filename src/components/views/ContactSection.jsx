@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useRef  } from "react";
 import Image from "next/image";
 import { contactSectionImg } from "../../../public/assets/images";
 import emailjs from "@emailjs/browser";
@@ -7,8 +7,8 @@ import { GrSend } from "react-icons/gr";
 import { toast } from "react-toastify";
 
 const ContactSection = () => {
-   const form = useRef();
-     const [loading, setLoading] = useState(false);
+  const form = useRef();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -34,9 +34,7 @@ const ContactSection = () => {
     }
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
-    } else if (
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)
-    ) {
+    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
       newErrors.email = "Enter a valid email address.";
     }
     if (!formData.message.trim()) {
@@ -180,11 +178,17 @@ const ContactSection = () => {
           </div>
 
           {/* submit btn */}
-          <button
+        <button
             type="submit"
-            className="flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer"
+            className="w-fit flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer group"
           >
-            Request Quote
+            <span className="">{loading ? "Sending..." : "Request Quote"}</span>
+            <GrSend
+              size={18}
+              className={`text-white transition-transform duration-300 ease-in-out ${
+                loading ? "animate-pulse" : "group-hover:translate-x-1 group-hover:text-orange"
+              }`}
+            />
           </button>
         </form>
 
