@@ -192,7 +192,7 @@ const ContactUs = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                placeholder="eg. Thomas"
+                placeholder="eg. John"
                 className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                   errors.firstName ? "border-red-500" : "border-[#1B1304]"
                 }`}
@@ -211,7 +211,7 @@ const ContactUs = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                placeholder="eg. Thomas"
+                placeholder="eg. Doe"
                 className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                   errors.lastName ? "border-red-500" : "border-[#1B1304]"
                 }`}
@@ -231,7 +231,7 @@ const ContactUs = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="eg. Thomasfrank@gmail.com"
+              placeholder="eg. johndoe@gmail.com"
               className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                 errors.email ? "border-red-500" : "border-[#1B1304]"
               }`}
@@ -250,7 +250,7 @@ const ContactUs = () => {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="eg. Thomasfrank@gmail.com"
+              placeholder="1234567890"
               className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                 errors.phoneNumber ? "border-red-500" : "border-[#1B1304]"
               }`}

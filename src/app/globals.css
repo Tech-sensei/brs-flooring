@@ -15,7 +15,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  
+
   --font-sans: var(--font-montserrat-sans);
   --font-alt: var(--font-montserrat-alt);
 
@@ -43,6 +43,15 @@
     padding-inline: 1rem;
   }
 }
+
+.Toastify__toast--success svg {
+  fill: #fa7d1e !important; /* Change check icon color */
+}
+
+.Toastify__progress-bar--success {
+  background: #fa7d1e !important;
+}
+
 html {
   scroll-behavior: smooth;
 }

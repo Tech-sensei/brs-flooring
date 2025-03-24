@@ -1,10 +1,11 @@
 "use client";
-import React, { useState,useRef  } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { contactSectionImg } from "../../../public/assets/images";
 import emailjs from "@emailjs/browser";
 import { GrSend } from "react-icons/gr";
 import { toast } from "react-toastify";
+import { FaCheckCircle } from "react-icons/fa";
 
 const ContactSection = () => {
   const form = useRef();
@@ -54,8 +55,8 @@ const ContactSection = () => {
       const result = await emailjs.sendForm("service_eehh4hl", "template_ya9njxe", form.current, "2gw7Lwmm3mD6Te1u7");
 
       console.log(result.text);
-      toast.success("Message sent successfully! 🎉");
-      // setFormData({ firstName: "", lastName: "", email: "", phoneNumber: "", message: "" }); // Reset form
+      toast.success("Message sent successfully! 🎉", { icon: <FaCheckCircle size={24} color="#fa7d1e" /> });
+      setFormData({ firstName: "", lastName: "", email: "", phoneNumber: "", message: "" }); // Reset form
     } catch (error) {
       console.log(error.text);
       toast.error("Failed to send message. Try again.");
@@ -92,7 +93,7 @@ const ContactSection = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                placeholder="eg. Thomas"
+                placeholder="eg. John"
                 className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                   errors.firstName ? "border-red-500" : "border-[#1B1304]"
                 }`}
@@ -111,7 +112,7 @@ const ContactSection = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                placeholder="eg. Thomas"
+                placeholder="eg. Doe"
                 className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                   errors.lastName ? "border-red-500" : "border-[#1B1304]"
                 }`}
@@ -131,7 +132,7 @@ const ContactSection = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="eg. Thomasfrank@gmail.com"
+              placeholder="eg. Johndoe@gmail.com"
               className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                 errors.email ? "border-red-500" : "border-[#1B1304]"
               }`}
@@ -150,7 +151,7 @@ const ContactSection = () => {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="eg. Thomasfrank@gmail.com"
+              placeholder="1234567890"
               className={`w-full flex items-center gap-2 py-[18px] px-6 h-[55px] rounded-xs border border-[#1B1304] text-dark outline-none focus:border focus:border-[#1B1304] placeholder:text-dark/40 placeholder:font-normal placeholder:font-sans ${
                 errors.phoneNumber ? "border-red-500" : "border-[#1B1304]"
               }`}
@@ -178,7 +179,7 @@ const ContactSection = () => {
           </div>
 
           {/* submit btn */}
-        <button
+          <button
             type="submit"
             className="w-fit flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer group"
           >

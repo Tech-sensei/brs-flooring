@@ -56,7 +56,16 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${montserrat.variable} ${montserratAlt.variable} antialiased`}>
         <Header />
-        <ToastContainer position="top-center" autoClose={4000} hideProgressBar={false} closeOnClick transition={Slide}/>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          closeOnClick
+          transition={Slide}
+          toastStyle={{ backgroundColor: "#FFF" }}
+          progressStyle={{ backgroundColor: "#fa7d1e" }} // Custom progress bar color
+        />
+
         {children}
         <Footer />
       </body>
