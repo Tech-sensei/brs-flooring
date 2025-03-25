@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { whyChooseUsImg1, whyChooseUsImg2 } from "../../../public/assets/images";
 import { bulbIcon, fileIcon, clockIcon, penIcon } from "../../../public/assets/icons";
 
@@ -122,12 +123,12 @@ const WhyChooseSection = () => {
           </div>
         </div>
 
-        <button
-          type="submit"
+        <Link
+          href="/contact-us"
           className="w-fit flex items-center justify-center gap-2 py-4 px-6 bg-orange rounded-xs border border-transparent transition-all duration-500 ease-in-out hover:border-orange hover:bg-transparent hover:text-orange text-white-10 text-base text-center font-sans font-semibold leading-normal cursor-pointer"
         >
           Request Quote
-        </button>
+        </Link>
       </div>
     </section>
   );

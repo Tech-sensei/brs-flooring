@@ -22,12 +22,12 @@ const TestimonialSection = () => {
 
         <TestimonialArr />
 
-        {/* pagination */}
+        {/* pagination
         <div className="flex items-center gap-2">
           <div className="w-[42px] h-[4px] rounded-xs bg-white flex items-start gap-2.5"></div>
           <div className="w-[42px] h-[4px] rounded-xs bg-[#FFFFFF52] flex items-start gap-2.5"></div>
           <div className="w-[42px] h-[4px] rounded-xs bg-[#FFFFFF52] flex items-start gap-2.5"></div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
