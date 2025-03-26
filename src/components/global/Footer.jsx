@@ -73,10 +73,10 @@ const Footer = () => {
             </div>
 
             {/* date */}
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <AiTwotoneClockCircle className="text-[#4033181A]" />
               <p className="text-dark text-base  font-sans font-normal leading-[150%] tracking-[-0.16px]">Mon-Fri 10:00 am – 5:00 pm</p>
-            </div>
+            </div> */}
           </div>
 
           {/* copyright and socials */}
