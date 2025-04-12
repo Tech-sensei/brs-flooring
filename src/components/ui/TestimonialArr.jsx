@@ -2,49 +2,33 @@
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { RiDoubleQuotesR } from "react-icons/ri";
-import { female1, female2, male1 } from "../../../public/assets/images";
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
+import { db } from "@/firebase/client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 
-const testimonialArr = [
-  {
-    name: "Chealsea Mitchell",
-    location: "USA, New York",
-    review:
-      "Helio and his team were prompt, responsive and professional. They moved and covered all of my furniture and made sure it was not damaged during the demolition of my existing floor. Helio helped me find high quality low price flooring and his installation price was reasonable as well. He made sure I was satisfied and addressed any issues or concerns I had with my new floors and stairs. Will definitely use this company again.",
-    rating: 5,
-    image: male1,
-  },
-  {
-    name: "Jackie Bleyer",
-    location: "Canada, Vancouver",
-    review:
-      " ⁠Helio and his crew did a fantastic job in my home. They worked so fast and did a great job, I really appreciated his attention to detail and being new to town he had some good recommendations for other work | needed to get done.",
-    rating: 5,
-    image: female2,
-  },
-  {
-    name: "Deb Cherry",
-    location: "UK, Manchester",
-    review:
-      "I am a repeat client of BRS. Helio recently completed my front entryway and it turned out beautifully! He did a fabulous job of matching our existing hardwood. BRS are always professionals and I highly recommend!!",
-    rating: 5,
-    image: male1,
-  },
-  {
-    name: "Lori Crowe",
-    location: "Australia, Sydney",
-    review:
-      "Working with Helio & his team was my first time with any kind of floor replacement. Helio was helpful in answering my questions and was flexible with his schedule. My new floors are so beautiful and the price was very reasonable. Thank you!",
-    rating: 5,
-    image: female1,
-  },
-];
-
-const TestimonialArr = () => {
+const TestimonialArr = ({ newReview }) => {
+  const [testimonialArr, setTestimonialArr] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const reviewsQuery = query(collection(db, "reviews"), orderBy("createdAt", "desc"), limit(10));
+      const snapshot = await getDocs(reviewsQuery);
+      const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      setTestimonialArr(data);
+    };
+    fetchReviews();
+  }, []);
+
+  // Add the new review to the state when it changes
+  useEffect(() => {
+    if (newReview) {
+      setTestimonialArr((prev) => [newReview, ...prev.slice(0, 9)]);
+    }
+  }, [newReview]);
 
   return (
     <div className="w-full flex flex-col items-center gap-6">
@@ -56,9 +40,7 @@ const TestimonialArr = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
+        pagination={{ clickable: true }}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         breakpoints={{
           640: { slidesPerView: 1, spaceBetween: 20 },
@@ -77,7 +59,9 @@ const TestimonialArr = () => {
                     <h3 className="text-dark text-base font-semibold font-alt">{testimonial.name}</h3>
                   </div>
                 </div>
-                <p className="text-dark text-sm lg:text-base font-normal font-sans leading-normal">{testimonial.review}</p>
+                <p className="text-dark text-sm lg:text-base font-normal font-sans leading-normal">
+                  {testimonial.review || testimonial.message}
+                </p>
               </div>
               <div className="flex flex-col items-center gap-4 w-full">
                 <div className="h-[1px] w-full bg-[#CDC6B8]"></div>
@@ -95,7 +79,6 @@ const TestimonialArr = () => {
         ))}
       </Swiper>
 
-      {/* Custom Pagination */}
       <div className="flex items-start self-baseline gap-2 mt-4">
         {testimonialArr.map((_, i) => (
           <div
