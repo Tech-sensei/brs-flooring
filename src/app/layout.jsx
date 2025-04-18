@@ -3,6 +3,7 @@ import Head from "next/head";
 import localFont from "next/font/local";
 import Header from "@/components/global/Header";
 import Footer from "@/components/global/Footer";
+import Script from "next/script";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -53,7 +54,18 @@ export default function RootLayout({ children }) {
         <meta name="twitter:description" content={metadata.description} />
         <meta name="twitter:image" content="/images/og-image.jpg" />
         <link rel="icon" href="/favicon.ico" />
+
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-0YREJZV7DJ" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0YREJZV7DJ');
+          `}
+        </Script>
       </Head>
+
       <body className={`${montserrat.variable} ${montserratAlt.variable} antialiased`}>
         <Header />
         <ToastContainer
