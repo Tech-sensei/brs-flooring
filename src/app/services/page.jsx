@@ -18,6 +18,19 @@ const ServicePage = () => {
 
   return (
     <main className="">
+      <Head>
+        <title>Our Services | BRS Floors</title>
+        <meta
+          name="description"
+          content="Explore BRS Floors' wide range of professional flooring services including installation, remodeling, and maintenance. Quality guaranteed."
+        />
+        <meta
+          name="keywords"
+          content="flooring services, vinyl installation, hardwood flooring, tile flooring, floor remodeling, BRS Floors, commercial flooring, residential flooring, premium flooring solutions"
+        />
+        <link rel="canonical" href="https://brsflooring.com/services" />
+      </Head>
+
       <section
         className="h-[413px] text-white-10 flex items-center px-24 pt-[200px] pb-10 bg-no-repeat bg-center bg-cover"
         style={{
@@ -33,17 +46,11 @@ const ServicePage = () => {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="text-white-10 text-base font-sans font-normal leading-normal"
             >
-              <Link
-                href="/"
-                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
-              >
+              <Link href="/" className="text-white-10 text-base font-sans font-normal leading-normal hover:underline">
                 Home
               </Link>{" "}
               -
-              <Link
-                href="/services"
-                className="text-white-10 text-base font-sans font-normal leading-normal hover:underline"
-              >
+              <Link href="/services" className="text-white-10 text-base font-sans font-normal leading-normal hover:underline">
                 Services
               </Link>{" "}
             </motion.p>
