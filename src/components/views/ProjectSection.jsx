@@ -55,6 +55,7 @@ export const projectsArr = [
 const ProjectSection = () => {
   return (
     <section className="bg-white py-24 lg:px-24 px-4 flex flex-col items-start gap-14">
+      
       {/* header */}
       <div className="flex flex-col lg:flex-row items-start justify-between w-full">
         <div className="flex flex-col items-start lg:gap-4 flex-1">
