@@ -13,7 +13,7 @@ const navMenu = [
   { id: 1, name: "Home", url: "/", hasChevron: false },
   { id: 2, name: "About", url: "/about", hasChevron: false },
   { id: 3, name: "Services", url: "/services", hasChevron: false },
-  // { id: 4, name: "Projects", url: "/projects", hasChevron: false },
+  { id: 4, name: "Projects", url: "/projects", hasChevron: false },
   { id: 5, name: "Contact", url: "/contact-us", hasChevron: false },
 ];
 
