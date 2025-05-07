@@ -82,6 +82,18 @@ export default function RootLayout({ children }) {
         `}
       </Script>
 
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17033744716"></Script>
+      <Script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'AW-17033744716');
+        `}
+      </Script>
+
       <body className={`${montserrat.variable} ${montserratAlt.variable} antialiased`}>
         <Header />
         <ToastContainer
