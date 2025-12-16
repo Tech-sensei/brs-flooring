@@ -53,13 +53,13 @@ const TestimonialArr = ({ newReview }) => {
         {testimonialArr.map((testimonial, index) => (
           <SwiperSlide key={index} className="flex justify-center">
             <div className="flex flex-col items-start justify-between gap-6 p-6 md:p-8 w-full max-w-[430px] h-[400px] md:h-[450px] rounded-2xl bg-white border border-[#CDC6B8] transition-all duration-500 ease-in-out hover:shadow-lg hover:border-transparent group">
-              <div className="flex flex-col items-start gap-4 w-full">
+              <div className="flex flex-col items-start gap-4 w-full flex-1 min-h-0 overflow-auto">
                 <div className="flex items-center gap-4">
                   <div>
                     <h3 className="text-dark text-base font-semibold font-alt">{testimonial.name}</h3>
                   </div>
                 </div>
-                <p className="text-dark text-sm lg:text-base font-normal font-sans leading-normal">
+                <p className="text-dark text-sm lg:text-base font-normal font-sans leading-normal whitespace-pre-wrap break-words">
                   {testimonial.review || testimonial.message}
                 </p>
               </div>
